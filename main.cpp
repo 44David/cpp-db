@@ -23,11 +23,6 @@ void read_query() {
         };
         db_query.close();
 
-        // for (size_t i  = 0; i < table_vector.size(); i++) {
-        //     std::cout << table_vector[i] << " , ";
-        // } std::cout << std::endl;
-
-
         Table data_table;
 
         data_table.tableName = table_vector[0];
@@ -35,6 +30,14 @@ void read_query() {
         data_table.username = table_vector[2];
 
         std::cout << data_table.tableName;
+
+
+
+        std::ofstream output_table("output-table.txt");
+        for (size_t i  = 0; i < table_vector.size(); i++) {
+            output_table << table_vector[i] << std::endl;
+        };
+
 
 
     
