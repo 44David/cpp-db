@@ -9,7 +9,7 @@ class Table {
         std::string tableName;
         std::string ID;
         std::string username;
-        time_t createdAt;
+        std::string createdAt;
 };
 
 void read_query() {
@@ -34,6 +34,10 @@ void read_query() {
         data_table.ID = table_vector[1];
         data_table.username = table_vector[2];
 
+        std::time_t result = std::time(nullptr);
+
+        data_table.createdAt = std::asctime(std::localtime(&result));
+
         std::cout << data_table.tableName;
 
         std::ofstream output_table("output-table.txt");
@@ -42,8 +46,11 @@ void read_query() {
         for (size_t i  = 1; i < table_vector.size(); i++) {
             output_table << table_vector[i] << std::endl;
         };
+        output_table << "Created at: " << data_table.createdAt << std::endl;
         output_table << "}";
         output_table.close();
+
+
 };
 
 int main() {
