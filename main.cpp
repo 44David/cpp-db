@@ -3,8 +3,9 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
+#include <algorithm>
 
-class Table {
+struct Table {
     public:
         std::string tableName;
         std::string ID;
@@ -38,7 +39,10 @@ void read_query() {
 
         data_table.createdAt = std::asctime(std::localtime(&result));
 
-        std::cout << data_table.tableName;
+        std::cout << data_table.tableName;  
+
+
+        std::make_heap(table_vector.begin(), table_vector.end());
 
         std::ofstream output_table("output-table.txt");
 
@@ -49,8 +53,6 @@ void read_query() {
         output_table << "Created at: " << data_table.createdAt << std::endl;
         output_table << "}";
         output_table.close();
-
-
 };
 
 int main() {
